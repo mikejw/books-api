@@ -4,7 +4,12 @@ $spacer: 1rem !default;
 
 @import "~bootstrap/scss/bootstrap";
 
-.table {
-  margin-top: 3* $spacer;
+.spinner-wrapper {
+  padding: 6 * $spacer;
+  min-height: 10 * $spacer;
 }
+.alert, .table {
+  margin-top: 3 * $spacer;
+}
+
 
