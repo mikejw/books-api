@@ -21,19 +21,38 @@ interface Response {
   msg?: any
 }
 
+interface ReqFilter {
+  type: string,
+  values: string[]
+}
+
 interface Req {
   page: number,
   itemsPerPage: number,
-  filter?: string[]
+  filters?: ReqFilter[]
 }
 
-export async function callAPI(page: number, itemsPerPage: number) {
+export async function callAPI(
+  page: number,
+  itemsPerPage: number,
+  search: string
+) {
   let res: Response = {
     books: [],
     count: 0,
     error: false
   }
-  const req: Req = { page, itemsPerPage };
+  let req: Req;
+  if (!search) {
+    req = { page, itemsPerPage };
+  } else {
+    const filter: ReqFilter = { type: 'all', values: [search] };
+    req = {
+      page,
+      itemsPerPage,
+      filters: [filter]
+    }
+  }
 
   try {
     return await axios.post(

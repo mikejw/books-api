@@ -8,12 +8,13 @@ import Spinner from 'react-bootstrap/Spinner';
 import { Book, callAPI } from '../misc/api';
 import Paginator from './Paginator';
 
-interface MainProps {
-  pageReq: number
+interface MainParams {
+  pageReq: number,
+  search: string
 }
 
-function Main({ pageReq }: MainProps) {
-  const itemsPerPage = 4;
+function Main({ pageReq, search }: MainParams) {
+  const itemsPerPage = 12;
   const [ page, setPage ] = useState<number>(pageReq);
   const [count, setCount] = useState<number>(0);
   const [ books, setBooks ] = useState<Book[]>([]);
@@ -22,7 +23,7 @@ function Main({ pageReq }: MainProps) {
 
   useEffect(() => {
     setApiError(false);
-    callAPI(page, itemsPerPage).then((data => {
+    callAPI(page, itemsPerPage, search).then((data => {
       //console.log(data);
       if (data) {
         if (data.books.length) { setBooks(data.books); }
@@ -31,7 +32,7 @@ function Main({ pageReq }: MainProps) {
         setErrorMsg(data.msg);
       }
     }));
-  }, [ page ]);
+  }, [ page, search ]);
 
   const booksMarkup = books.map((item, index) => {
     return (
@@ -71,6 +72,7 @@ function Main({ pageReq }: MainProps) {
             count={ count }
             itemsPerPage={ itemsPerPage }
             page={ page }
+            search={ search }
         />
       </>
       }
