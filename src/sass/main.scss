@@ -1,0 +1,10 @@
+
+$primary: #1D7874 !default;
+$spacer: 1rem !default;
+
+@import "~bootstrap/scss/bootstrap";
+
+.table {
+  margin-top: 3* $spacer;
+}
+
