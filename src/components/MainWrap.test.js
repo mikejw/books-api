@@ -27,9 +27,6 @@ describe('MainWrap', () => {
     render(<MainWrap />);
     const linkElement = screen.getByText(/Great Books/i);
     expect(linkElement).toBeInTheDocument();
-
-
-
   });
 
   test('Include search box', () => {

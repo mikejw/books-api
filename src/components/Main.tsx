@@ -22,15 +22,19 @@ function Main({ pageReq, search }: MainParams) {
 
   useEffect(() => {
     setApiError(false);
+    let isCancelled = false;
     callAPI(pageReq, itemsPerPage, search).then((data => {
       //console.log(data);
-      if (data) {
+      if (data && !isCancelled) {
         if (data.books.length) { setBooks(data.books); }
         if (data.count) { setCount(data.count); }
         setApiError(data.error)
         setErrorMsg(data.msg);
       }
     }));
+    return () => {
+      isCancelled = true;
+    };
   }, [ pageReq, search ]);
 
   const booksMarkup = books.map((item, index) => {
