@@ -15,7 +15,6 @@ interface MainParams {
 
 function Main({ pageReq, search }: MainParams) {
   const itemsPerPage = 12;
-  const [ page, setPage ] = useState<number>(pageReq);
   const [count, setCount] = useState<number>(0);
   const [ books, setBooks ] = useState<Book[]>([]);
   const [ apiError, setApiError] = useState<Boolean>(false);
@@ -23,7 +22,7 @@ function Main({ pageReq, search }: MainParams) {
 
   useEffect(() => {
     setApiError(false);
-    callAPI(page, itemsPerPage, search).then((data => {
+    callAPI(pageReq, itemsPerPage, search).then((data => {
       //console.log(data);
       if (data) {
         if (data.books.length) { setBooks(data.books); }
@@ -32,7 +31,7 @@ function Main({ pageReq, search }: MainParams) {
         setErrorMsg(data.msg);
       }
     }));
-  }, [ page, search ]);
+  }, [ pageReq, search ]);
 
   const booksMarkup = books.map((item, index) => {
     return (
@@ -71,7 +70,7 @@ function Main({ pageReq, search }: MainParams) {
         <Paginator
             count={ count }
             itemsPerPage={ itemsPerPage }
-            page={ page }
+            page={ pageReq }
             search={ search }
         />
       </>
