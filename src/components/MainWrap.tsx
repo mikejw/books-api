@@ -30,6 +30,7 @@ function MainWrap({ pageReq }: MainWrapProps) {
    * `history.push()`.
    */
   function submitSearch(event: FormEvent<HTMLFormElement>): void {
+    event.preventDefault();
     pageReq = 1;
     setSubmittedSearch(search);
     history.push(`/1?q=${ encodeURI(search) }`);

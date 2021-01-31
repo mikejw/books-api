@@ -27,7 +27,7 @@ describe('Main', () => {
     });
   });
 
-  test('renders results from API', async () => {
+  test('Renders results from API', async () => {
     act(() => {
       renderWithRouter(1, '');
     });
@@ -40,7 +40,7 @@ describe('Main', () => {
   });
 
 
-  test('renders different results from API', async () => {
+  test('Renders different results from API', async () => {
     act(() => {
       renderWithRouter(1, 'faith');
     });
