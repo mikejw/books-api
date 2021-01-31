@@ -26,8 +26,16 @@ function Main({ pageReq, search }: MainProps) {
     callAPI(pageReq, itemsPerPage, search).then((data => {
       //console.log(data);
       if (data && !isCancelled) {
-        if (data.books.length) { setBooks(data.books); }
-        if (data.count) { setCount(data.count); }
+        if (data.books.length) {
+          setBooks(data.books);
+        } else {
+          setBooks([]);
+        }
+        if (data.count) {
+          setCount(data.count);
+        } else {
+          setCount(0);
+        }
         setApiError(data.error)
         setErrorMsg(data.msg);
       }
