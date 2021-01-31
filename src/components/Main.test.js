@@ -5,7 +5,6 @@ import { render, screen, waitFor } from '@testing-library/react';
 import { Router, Route } from 'react-router';
 import { createMemoryHistory } from 'history';
 import { act } from 'react-dom/test-utils';
-
 const history = createMemoryHistory();
 
 /*
@@ -21,7 +20,7 @@ export const renderWithRouter = (pageReq, search) => render(
 );
 
 describe('Main', () => {
-  test('renders Main component', () => {
+  test('Renders Main component', () => {
     act(() => {
       renderWithRouter(1, '');
     });

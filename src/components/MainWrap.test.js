@@ -4,7 +4,7 @@ import { Router, Route } from 'react-router';
 import { createMemoryHistory } from 'history';
 import {render, screen, fireEvent, waitFor} from '@testing-library/react';
 import MainWrap from "./MainWrap";
-import {act} from "react-dom/test-utils";
+import { act } from "react-dom/test-utils";
 const history = createMemoryHistory();
 
 /*

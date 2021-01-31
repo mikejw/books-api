@@ -1,5 +1,4 @@
 
-
 import { callAPI } from './api';
 
 describe('API', () => {
