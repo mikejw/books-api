@@ -4,41 +4,40 @@ import MainWrap from './MainWrap';
 import { Router, Route } from 'react-router';
 import { createMemoryHistory } from 'history';
 import { render, screen } from '@testing-library/react';
+import Main from "./Main";
 const history = createMemoryHistory();
 
 /*
  * Testing within Routes:
  * https://gitmemory.com/issue/testing-library/react-testing-library/493/542652139
  */
-export const renderWithRouter = Component => render(
+export const renderWithRouter = (pageReq, search) => render(
   <Router history={ history }>
-    <Route component={ Component } />
+    <Route>
+      <Main pageReq={ pageReq } search={ search } />
+    </Route>
   </Router>
-)
+);
 
 describe('MainWrap', () => {
   test('renders MainWrap component', () => {
-    const render = () => renderWithRouter(MainWrap);
-    render(<MainWrap />);
+    renderWithRouter(1, '');
   });
 
   test('Include Great Books heading', () => {
-    const render = () => renderWithRouter(MainWrap);
-    render(<MainWrap />);
+    renderWithRouter(1, '');
     const linkElement = screen.getByText(/Great Books/i);
     expect(linkElement).toBeInTheDocument();
   });
 
   test('Include search box', () => {
-    const render = () => renderWithRouter(MainWrap);
-    render(<MainWrap />);
+    renderWithRouter(1, '');
     const searchElement = screen.getByRole('textbox');
     expect(searchElement).toBeInTheDocument();
   });
 
   test('Include search button', () => {
-    const render = () => renderWithRouter(MainWrap);
-    render(<MainWrap />);
+    renderWithRouter(1, '');
     const searchSubmitElement = screen.getByRole('button');
     expect(searchSubmitElement).toBeInTheDocument();
   });

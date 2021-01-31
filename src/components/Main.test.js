@@ -18,7 +18,7 @@ export const renderWithRouter = (pageReq, search) => render(
       <Main pageReq={ pageReq } search={ search } />
     </Route>
   </Router>
-)
+);
 
 describe('Main', () => {
   test('renders Main component', () => {
