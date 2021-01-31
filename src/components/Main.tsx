@@ -8,12 +8,12 @@ import Spinner from 'react-bootstrap/Spinner';
 import { Book, callAPI } from '../misc/api';
 import Paginator from './Paginator';
 
-interface MainParams {
+interface MainProps {
   pageReq: number,
   search: string
 }
 
-function Main({ pageReq, search }: MainParams) {
+function Main({ pageReq, search }: MainProps) {
   const itemsPerPage = 12;
   const [count, setCount] = useState<number>(0);
   const [ books, setBooks ] = useState<Book[]>([]);
