@@ -1,4 +1,4 @@
-import React, { FormEvent, ChangeEvent, useState } from "react";
+import React, { FormEvent, ChangeEvent, useState, useEffect } from "react";
 import { useLocation, useHistory } from "react-router-dom";
 import Main from './Main';
 import Navbar from "react-bootstrap/Navbar";
@@ -19,16 +19,18 @@ interface MainWrapProps {
 
 function MainWrap({ pageReq }: MainWrapProps) {
   const query = useQuery();
+  let foundSearch = query.get('q');
   const history = useHistory();
-  const foundSearch = query.get('q')
   const [ search, setSearch ] = useState(!!foundSearch? foundSearch: '');
   const [ submittedSearch, setSubmittedSearch] = useState(search);
 
+  useEffect(() => {
+    foundSearch = query.get('q') || '';
+    setSearch(foundSearch);
+    setSubmittedSearch(foundSearch);
 
-  /* Will not work as expected with use of
-   * `event.preventDefault()` and without
-   * `history.push()`.
-   */
+    }, [ pageReq ]);
+  
   function submitSearch(event: FormEvent<HTMLFormElement>): void {
     event.preventDefault();
     pageReq = 1;
